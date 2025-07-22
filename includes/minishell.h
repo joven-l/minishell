@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 18:34:40 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/16 18:35:11 by joloo            ###   ########.fr       */
+/*   Created: 2025/07/22 16:36:00 by joloo             #+#    #+#             */
+/*   Updated: 2025/07/22 16:36:32 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(void)
-{
-	write(1, "a shell", 7);
-	return (0);
-}
+#include "../libft/includes/libft.h"
+
+#endif

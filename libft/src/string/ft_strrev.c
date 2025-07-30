@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/05 14:41:51 by joloo             #+#    #+#             */
+/*   Updated: 2025/03/05 15:07:32 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_strrev(char *result)
 {
-	t_data *data;
+	int		start;
+	int		end;
+	char	temp;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	start = 0;
+	end = ft_strlen(result) - 1;
+	if (result[start] == '-')
+		start++;
+	while (start < end)
+	{
+		temp = result[start];
+		result[start] = result[end];
+		result[end] = temp;
+		start++;
+		end--;
+	}
 }

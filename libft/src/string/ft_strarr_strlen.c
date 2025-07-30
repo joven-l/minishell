@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strarr_strlen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/11 14:01:40 by joloo             #+#    #+#             */
+/*   Updated: 2025/03/11 14:20:33 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+// ft_strlen but for a whole array
+size_t	ft_strarr_strlen(char **arr)
 {
-	t_data *data;
+	size_t	i;
+	size_t	count;
+	size_t	j;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	count = 0;
+	while (arr[i] != NULL)
+	{
+		j = 0;
+		while (arr[i][j] != '\0')
+		{
+			count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
 }

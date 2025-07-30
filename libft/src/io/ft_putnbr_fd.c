@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2024/11/08 14:15:16 by joloo             #+#    #+#             */
+/*   Updated: 2024/11/17 13:50:26 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_data *data;
+	char	a;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	if (n < 0)
+	{
+		if (n == -2147483648)
+		{
+			ft_putstr_fd("-2147483648", fd);
+			return ;
+		}
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	a = (n % 10) + '0';
+	ft_putchar_fd(a, fd);
 }
+
+/*int	main(void)
+{
+	ft_putnbr_fd(-12345, 1);
+}*/

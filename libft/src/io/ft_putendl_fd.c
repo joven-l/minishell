@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2024/11/08 14:13:30 by joloo             #+#    #+#             */
+/*   Updated: 2024/11/16 16:58:12 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_data *data;
+	int	i;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }

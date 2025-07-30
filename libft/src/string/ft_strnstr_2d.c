@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr_2d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/06 15:13:15 by joloo             #+#    #+#             */
+/*   Updated: 2025/04/17 13:38:49 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+// Returns the full string if matches little, not only after the match
+// arrlen is how many arrays to search
+// len is how many character to search
+char	*ft_strnstr_2d(char **big, char *little, size_t arrlen, size_t len)
 {
-	t_data *data;
+	size_t	i;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	while (big[i] != NULL && i < arrlen)
+	{
+		if (ft_strnstr(big[i], little, len) != NULL)
+		{
+			return ((char *)big[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

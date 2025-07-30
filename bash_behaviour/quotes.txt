@@ -1,0 +1,4 @@
+'aaa | $USER' is literal characters, interpret as string no matter what
+"aaa | $USER" same but expand $
+
+handle tabs as space

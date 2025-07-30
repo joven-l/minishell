@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/05 15:25:24 by joloo             #+#    #+#             */
+/*   Updated: 2025/03/13 16:38:20 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+// atoi but from 2d char array to 1d int array
+// use along with gnl and ft_split
+
+int	*ft_atoi_array(char **split, int size)
 {
-	t_data *data;
+	int	*arr;
+	int	i;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	arr = malloc(sizeof(int) * (size));
+	if (arr == NULL)
+		return (0);
+	while (i < size)
+	{
+		arr[i] = ft_atoi(split[i]);
+		i++;
+	}
+	return (arr);
 }

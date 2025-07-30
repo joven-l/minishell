@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/05/09 18:39:13 by joloo             #+#    #+#             */
+/*   Updated: 2025/05/09 18:40:52 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+// returns how many words are delimited by a char
+size_t	count_words(char const *s, char c)
 {
-	t_data *data;
+	size_t	i;
+	size_t	count;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }

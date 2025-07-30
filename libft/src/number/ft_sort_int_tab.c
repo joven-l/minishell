@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/05 15:21:27 by joloo             #+#    #+#             */
+/*   Updated: 2025/04/17 13:41:06 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	t_data *data;
+	int	i;
+	int	temp;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	size = size - 1;
+	while (size > 0)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (tab[i] > tab[i + 1])
+			{
+				temp = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = temp;
+			}
+			i++;
+		}
+		size--;
+	}
 }

@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_itoa_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 16:36:43 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 20:00:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/03/05 15:34:46 by joloo             #+#    #+#             */
+/*   Updated: 2025/03/05 15:41:15 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+char	**ft_itoa_array(int *arr, int size)
 {
-	t_data *data;
+	char	**res;
+	int		i;
 
-	(void)argc;
-	(void)argv;
-	init(&data, envp);
-	start(&data);
-	free_exit(&data, 0);
+	i = 0;
+	res = malloc(sizeof(char *) * (size + 1));
+	if (res == NULL)
+		return (0);
+	while (i < size)
+	{
+		res[i] = ft_itoa(arr[i]);
+		if (res[i] == NULL)
+		{
+			ft_free_str_arr(res, i);
+			return (NULL);
+		}
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
 }

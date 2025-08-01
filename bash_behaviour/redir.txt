@@ -1,0 +1,8 @@
+< infile cat 
+same as 
+cat < 
+
+< infile grep a > text.txt > text1.txt
+same as
+< infile grep a > text1.txt
+but still open/create text.txt

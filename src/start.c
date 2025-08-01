@@ -14,5 +14,9 @@
 
 void	start(t_data *data)
 {
-
+	while (1)
+	{
+		read_input(data);
+		tokenize(data);
+	}
 }

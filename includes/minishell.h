@@ -6,21 +6,29 @@
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:36:00 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/30 15:30:10 by joloo            ###   ########.fr       */
+/*   Updated: 2025/08/01 16:36:19 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "../libft/includes/libft.h"
+# include "../libft/includes/libft.h"
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+typedef struct sigaction	t_sig;
 
 // here_doc/append is <</>>
 // var is $
-typedef	enum e_type
+typedef enum e_type
 {
-	COMMAND,
-	BUILTIN,
+	ECHO,
+	CD,
+	PWD,
+	EXPORT,
+	UNSET,
+	ENV,
 	UNQUOTED,
 	SINGLE_QUOTED,
 	DOUBLE_QUOTED,
@@ -30,6 +38,7 @@ typedef	enum e_type
 	APPEND,
 	PIPE,
 	VAR,
+	COMMAND,
 }	t_type;
 
 typedef struct s_cmd
@@ -57,10 +66,12 @@ typedef struct s_data
 	pid_t	*pid;
 	int		**pipes;
 	char	*input;
+	t_sig	sig;
+	t_sig	sig_inter;
 	t_cmd	*cmd;
 	t_token	*token;
-	char	**token_lookup
-}	t_data;
+	char	**token_lookup;
+}			t_data;
 
 // free_exit.c
 void	free_exit(t_data *data, int exit_code);
@@ -68,7 +79,17 @@ void	free_exit(t_data *data, int exit_code);
 // init.c
 void	init(t_data *data, char **envp);
 
+// read_input.c
+void	read_input(t_data *data);
+
+// signals.c
+void	handler_inter(int sig);
+void	handler(int sig);
+
 // start.c
-void	start(t_data *data)
+void	start(t_data *data);
+
+// tokenize.c
+void	tokenize(t_data *data);
 
 #endif

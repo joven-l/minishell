@@ -16,6 +16,6 @@ void	free_exit(t_data *data, int exit_code)
 {
 	if (errno != 0)
 		perror("Error");
-
+	free (data->input);
 	exit(exit_code);
 }

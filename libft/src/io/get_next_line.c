@@ -6,7 +6,7 @@
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:22:45 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/26 10:57:36 by joloo            ###   ########.fr       */
+/*   Updated: 2025/08/01 14:11:14 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static int	read_fd_gnl(t_gnl *curr)
 	rc = 0;
 	while (1)
 	{
+		if (ft_strchr_pos(curr->buffer, '\n', curr->size) != 0)
+			return (1);
 		curr->buffer = ft_realloc(curr->buffer, 0,
 				curr->size, curr->size + BUFFER_SIZE + 1);
 		if (curr->buffer == NULL)
@@ -85,8 +87,6 @@ static int	read_fd_gnl(t_gnl *curr)
 			curr->fd = -1;
 			return (1);
 		}
-		if (ft_strchr_pos(curr->buffer, '\n', curr->size) != 0)
-			return (1);
 	}
 }
 

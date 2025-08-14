@@ -1,8 +1,8 @@
 NAME = minishell
-# CC=gcc
-# CFLAGS=-Wall -Wextra -Werror -ggdb3
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
+CC=gcc
+CFLAGS=-Wall -Wextra -Werror -ggdb3
+# CC=cc
+# CFLAGS=-Wall -Wextra -Werror
 INC_DIR = includes
 IFLAGS = -I$(INC_DIR)
 LIBS = -lreadline

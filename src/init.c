@@ -23,9 +23,16 @@ void	init(t_data *data, char **envp)
 
 void	init_lookup(t_data *data)
 {
-	data->token_lookup = malloc(sizeof(char *) * (10 + 1));
+	data->token_lookup = malloc(sizeof(char *) * (UNQUOTED + 1));
 	if (data->token_lookup == NULL)
 		free_exit(data, 1);
-	data->token_lookup[
+	data->token_lookup[HERE_DOC] = ft_strdup("<<");
+	data->token_lookup[APPEND] = ft_strdup(">>");
+	data->token_lookup[REDIR_IN] = ft_strdup("<");
+	data->token_lookup[REDIR_OUT] = ft_strdup(">");
+	data->token_lookup[VAR] = ft_strdup("$");
+	data->token_lookup[SINGLE_QUOTED] = ft_strdup("'");
+	data->token_lookup[DOUBLE_QUOTED] = ft_strdup("\"");
+	data->token_lookup[UNQUOTED] = NULL;
 }
 

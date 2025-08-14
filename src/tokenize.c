@@ -12,7 +12,67 @@
 
 #include "minishell.h"
 
-void	tokenize(t_data *data)
+int	tokenize(t_data *data)
 {
-	(void)data;
+	int	i;
+	int	j;
+	int	type;
+
+	i = 0;
+	j = 0;
+	while (data->input[i] != '\0')
+	{
+		type = detect_operator(data, &i, &j);
+		if (j != 0)
+		{
+			if (handle_unquote(data, &i, j) == 0)
+				return (0);
+			j = 0;
+		}
+		else
+		{
+			handle_operator(data, &i);
+		}
+	}
+	return (1);
+}
+
+int detect_operator(t_data *data, int *i, int *j)
+{
+	int	type;
+
+	type = 0;
+	while (data->token_lookup[type] != NULL)
+	{
+		if (ft_strcmp(data->input + *i, data->token_lookup[type]) == 0)
+			return (type);
+		type++;
+	}
+	*i++;
+	*j++;
+	return (UNQUOTED);
+}
+
+void	add_node(t_data *data, int start, int len, int type)
+{
+	t_token	*node;
+
+	node = ft_calloc(1, sizeof(t_token));
+	if (node == NULL)
+		free_exit(data, 1);
+	node->content = ft_substr(data->input, start, len);
+	if (node->content == NULL)
+		free_exit(data, 1);
+	node->type = type;
+	if (data->token == NULL)
+	{
+		data->token = node;
+		data->token_last = node;
+	}
+	else
+	{
+		data->token_last->next = node;
+		node->prev = data->token_last;
+		data->token_last = node;
+	}
 }

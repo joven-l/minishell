@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 19:12:39 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 19:12:39 by joloo            ###   ########.fr       */
+/*   Created: 2025/08/12 11:31:14 by joloo             #+#    #+#             */
+/*   Updated: 2025/08/12 11:31:14 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	start(t_data *data)
+void	free_exit(t_data *data, int exit_code)
 {
-	while (1)
-	{
-		read_input(data);
-		// if (tokenize(data) == 0)
-		// 	continue ;
-		printf("%d\n", tokenize(data));
-		t_token *temp;
-		temp = data->token;
-		while (temp->next != NULL)
-		{
-			printf("%s\n", temp->content);
-			temp = temp->next;
-		}
-	}
+	if (errno != 0)
+		perror("Error");
+	free(data->input);
+	exit(exit_code);
+}
+
+void	free_prompt(t_data *data)
+{
+	if (errno != 0)
+		perror("Error");
+	free(data->input);
+	data->input = NULL;
 }

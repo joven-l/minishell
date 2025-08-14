@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 17:14:34 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 17:14:34 by joloo            ###   ########.fr       */
+/*   Created: 2025/08/11 12:13:51 by joloo             #+#    #+#             */
+/*   Updated: 2025/08/11 12:13:51 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	free_exit(t_data *data, int exit_code)
+// if reaches end with no match return 0
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (errno != 0)
-		perror("Error");
-	free (data->input);
-	exit(exit_code);
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (0);
+		i++;
+	}
+	return ((unsigned char)s1[i] - ((unsigned char )s2[i]));
 }

@@ -62,6 +62,7 @@ $(STRING_DIR)/ft_count_char.c \
 $(STRING_DIR)/ft_count_words.c \
 $(STRING_DIR)/ft_split.c \
 $(STRING_DIR)/ft_strchr.c \
+$(STRING_DIR)/ft_strcmp.c \
 $(STRING_DIR)/ft_strchr_pos.c \
 $(STRING_DIR)/ft_strdup.c \
 $(STRING_DIR)/ft_striteri.c \

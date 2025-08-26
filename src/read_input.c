@@ -18,7 +18,6 @@ void	read_input(t_data *data)
 	sigaction(SIGINT, &data->sig_inter, NULL);
 	sigaction(SIGQUIT, &data->sig_inter, NULL);
 	data->input = readline("minishell>");
-	printf("%s", data->input);
 	if (data->input == NULL)
 		free_exit(data, 0);
 	if (data->input != NULL)

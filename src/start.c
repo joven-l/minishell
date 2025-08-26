@@ -14,18 +14,20 @@
 
 void	start(t_data *data)
 {
+	int	rs;
 	while (1)
 	{
 		read_input(data);
-		// if (tokenize(data) == 0)
-		// 	continue ;
-		printf("%d\n", tokenize(data));
-		t_token *temp;
-		temp = data->token;
-		while (temp->next != NULL)
+		rs = tokenize(data);
+		printf("%d\n", rs);
+		if (rs == 0)
+			continue ;
+		t_token *tmp;
+		tmp = data->token;
+		while (tmp != NULL)
 		{
-			printf("%s\n", temp->content);
-			temp = temp->next;
+			printf("%s\n", tmp->content);
+			tmp = tmp->next;
 		}
 	}
 }

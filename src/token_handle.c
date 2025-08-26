@@ -15,9 +15,9 @@
 int handle_operator(t_data *data, int *i, int type)
 {
 	if (type == SINGLE_QUOTED)
-		return (SINGLE_QUOTED);
+		return (handle_squote(data, i));
 	else if (type == DOUBLE_QUOTED)
-		return (DOUBLE_QUOTED);
+		return (handle_dquote(data, i));
 	add_node(data, *i , ft_strlen(data->token_lookup[type]), type);
 	*i += ft_strlen(data->token_lookup[type]);
 	return (1);
@@ -51,7 +51,11 @@ int	handle_dquote(t_data *data, int *i)
 	return (1);
 }
 
-int	handle_unquote(t_data *data, int *i)
+int	handle_unquoted(t_data *data, int *i, int *j)
 {
-	int	j;
+	if (*j == 0)
+		return (1);
+	add_node(data, *i - *j, *j, UNQUOTED);
+	*j = 0;
+	return (1);
 }

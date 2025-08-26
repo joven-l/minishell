@@ -1,6 +1,11 @@
+syntax
+< FILEAME
+> FILENAME
+anywhere in command block.
+
 < infile cat 
 same as 
-cat < 
+cat < infile
 
 < infile grep a > text.txt > text1.txt
 same as

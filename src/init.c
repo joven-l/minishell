@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 19:12:42 by joloo             #+#    #+#             */
-/*   Updated: 2025/07/27 19:12:42 by joloo            ###   ########.fr       */
+/*   Created: 2025/08/18 13:46:05 by joloo             #+#    #+#             */
+/*   Updated: 2025/08/18 13:46:05 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_data *data, char **envp)
 {
-	ft_memset(data, 0, sizeof(data));
+	ft_memset(data, 0, sizeof(t_data));
 	data->envp = ft_strarrdup(envp);
 	data->sig.sa_handler = handler;
 	data->sig_inter.sa_handler = handler_inter;

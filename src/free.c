@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/12 11:31:14 by joloo             #+#    #+#             */
-/*   Updated: 2025/08/12 11:31:14 by joloo            ###   ########.fr       */
+/*   Created: 2025/08/18 10:25:32 by joloo             #+#    #+#             */
+/*   Updated: 2025/08/18 10:25:32 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,6 @@ void	free_prompt(t_data *data)
 	free(data->input);
 	data->input = NULL;
 }
+
+
+

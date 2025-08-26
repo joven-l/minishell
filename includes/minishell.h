@@ -6,7 +6,7 @@
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:36:00 by joloo             #+#    #+#             */
-/*   Updated: 2025/08/12 14:30:29 by joloo            ###   ########.fr       */
+/*   Updated: 2025/08/26 12:59:47 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum e_type
 	SINGLE_QUOTED,
 	DOUBLE_QUOTED,
 	UNQUOTED,
+	SPACES,
 }	t_type;
 
 typedef struct s_cmd
@@ -91,12 +92,14 @@ void	handler(int sig);
 void	start(t_data *data);
 
 // token_handle.c
-int 	handle_operator(t_data *data, int *i);
+int		handle_operator(t_data *data, int *i, int type);
 int		handle_squote(t_data *data, int *i);
 int		handle_dquote(t_data *data, int *i);
+int		handle_unquoted(t_data *data, int *i, int *j);
 
 // tokenize.c
 int		tokenize(t_data *data);
+int	 detect_operator(t_data *data, int *i, int *j);
 void	add_node(t_data *data, int start, int len, int type);
 
 #endif

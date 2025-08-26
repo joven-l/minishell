@@ -1,6 +1,6 @@
 NAME = minishell
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -ggdb3
+CFLAGS=-Wall -Wextra -Werror -g -O0
 # CC=cc
 # CFLAGS=-Wall -Wextra -Werror
 INC_DIR = includes

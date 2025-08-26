@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+// i = start
+// j = unquoted len
 int	tokenize(t_data *data)
 {
 	int	i;
@@ -23,17 +25,19 @@ int	tokenize(t_data *data)
 	while (data->input[i] != '\0')
 	{
 		type = detect_operator(data, &i, &j);
-		if (j != 0)
+		if (type != UNQUOTED || type == SPACES)
 		{
-			if (handle_unquote(data, &i, j) == 0)
+			if (j > 0)
+			{
+				if (handle_unquoted(data, &i, &j) == 0)
+					return (0);
+			}
+			if (handle_operator(data, &i, type) == 0)
 				return (0);
-			j = 0;
-		}
-		else
-		{
-			handle_operator(data, &i);
 		}
 	}
+	if (handle_unquoted(data, &i, &j) == 0)
+		return (0);
 	return (1);
 }
 
@@ -42,14 +46,16 @@ int detect_operator(t_data *data, int *i, int *j)
 	int	type;
 
 	type = 0;
+	if (data->input[*i] == ' ')
+		return (SPACES);
 	while (data->token_lookup[type] != NULL)
 	{
 		if (ft_strcmp(data->input + *i, data->token_lookup[type]) == 0)
 			return (type);
 		type++;
 	}
-	*i++;
-	*j++;
+	(*i)++;
+	(*j)++;
 	return (UNQUOTED);
 }
 

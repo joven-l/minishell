@@ -6,7 +6,7 @@
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:36:00 by joloo             #+#    #+#             */
-/*   Updated: 2025/08/26 12:59:47 by joloo            ###   ########.fr       */
+/*   Updated: 2025/08/27 10:47:07 by joloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ typedef enum e_type
 	REDIR_IN,
 	REDIR_OUT,
 	PIPE,
-	VAR,
 	SINGLE_QUOTED,
 	DOUBLE_QUOTED,
 	UNQUOTED,
-	SPACES,
 }	t_type;
 
 typedef struct s_cmd
@@ -76,6 +74,7 @@ void	builtin_export(t_data *data);
 // free.c
 void	free_exit(t_data *data, int exit_code);
 void	free_prompt(t_data *data);
+void	free_tokens(t_data *data);
 
 // init.c
 void	init(t_data *data, char **envp);
@@ -92,14 +91,14 @@ void	handler(int sig);
 void	start(t_data *data);
 
 // token_handle.c
-int		handle_operator(t_data *data, int *i, int type);
-int		handle_squote(t_data *data, int *i);
-int		handle_dquote(t_data *data, int *i);
-int		handle_unquoted(t_data *data, int *i, int *j);
+int		add_operator(t_data *data, int *i, int type);
+int		add_squote(t_data *data, int *i);
+int		add_dquote(t_data *data, int *i);
+int		add_unquoted(t_data *data, int *i);
 
 // tokenize.c
 int		tokenize(t_data *data);
-int	 detect_operator(t_data *data, int *i, int *j);
+int		detect_operator(t_data *data, int i);
 void	add_node(t_data *data, int start, int len, int type);
 
 #endif

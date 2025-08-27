@@ -2,3 +2,5 @@
 "aaa | $USER" same but expand $
 
 echo "A"" invalid, only "A" valid. find the next " only
+
+if ""(empty), just remove it

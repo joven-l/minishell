@@ -24,10 +24,14 @@ void	start(t_data *data)
 			continue ;
 		t_token *tmp;
 		tmp = data->token;
+		int	i = 0;
 		while (tmp != NULL)
 		{
-			printf("%s\n", tmp->content);
+			i++;
+			printf("token %d, type: %d: %s\n", i, tmp->type, tmp->content);
 			tmp = tmp->next;
 		}
+		free_prompt(data);
+		printf("Next prompt\n");
 	}
 }

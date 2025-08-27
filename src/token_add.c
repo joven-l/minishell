@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_handle.c                                     :+:      :+:    :+:   */
+/*   token_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joloo <joloo@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,18 @@
 
 #include "minishell.h"
 
-int handle_operator(t_data *data, int *i, int type)
+int add_operator(t_data *data, int *i, int type)
 {
 	if (type == SINGLE_QUOTED)
-		return (handle_squote(data, i));
+		return (add_squote(data, i));
 	else if (type == DOUBLE_QUOTED)
-		return (handle_dquote(data, i));
+		return (add_dquote(data, i));
 	add_node(data, *i , ft_strlen(data->token_lookup[type]), type);
 	*i += ft_strlen(data->token_lookup[type]);
 	return (1);
 }
 
-int	handle_squote(t_data *data, int *i)
+int	add_squote(t_data *data, int *i)
 {
 	int	j;
 
@@ -37,7 +37,7 @@ int	handle_squote(t_data *data, int *i)
 	return (1);
 }
 
-int	handle_dquote(t_data *data, int *i)
+int	add_dquote(t_data *data, int *i)
 {
 	int	j;
 
@@ -51,11 +51,18 @@ int	handle_dquote(t_data *data, int *i)
 	return (1);
 }
 
-int	handle_unquoted(t_data *data, int *i, int *j)
+int	add_unquoted(t_data *data, int *i)
 {
-	if (*j == 0)
-		return (1);
-	add_node(data, *i - *j, *j, UNQUOTED);
-	*j = 0;
+	int	j;
+
+	j = 0;
+	while (data->input[*i] != '\0' && data->input[*i] != ' '
+		&& detect_operator(data, *i) == UNQUOTED)
+	{
+		(*i)++;
+		j++;
+	}
+	if (j > 0)
+		add_node(data, *i - j, j, UNQUOTED);
 	return (1);
 }

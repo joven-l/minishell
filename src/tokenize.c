@@ -17,45 +17,42 @@
 int	tokenize(t_data *data)
 {
 	int	i;
-	int	j;
 	int	type;
 
 	i = 0;
-	j = 0;
 	while (data->input[i] != '\0')
 	{
-		type = detect_operator(data, &i, &j);
-		if (type != UNQUOTED || type == SPACES)
+		while (data->input[i] != '\0' && data->input[i] == ' ')
+			i++;
+		if (data->input[i] == '\0')
+			break ;
+		type = detect_operator(data, i);
+		if (type == UNQUOTED)
 		{
-			if (j > 0)
-			{
-				if (handle_unquoted(data, &i, &j) == 0)
-					return (0);
-			}
-			if (handle_operator(data, &i, type) == 0)
+			if (add_unquoted(data, &i) == 0)
+				return (0);
+		}
+		else
+		{
+			if (add_operator(data, &i, type) == 0)
 				return (0);
 		}
 	}
-	if (handle_unquoted(data, &i, &j) == 0)
-		return (0);
 	return (1);
 }
 
-int detect_operator(t_data *data, int *i, int *j)
+int detect_operator(t_data *data, int i)
 {
 	int	type;
 
 	type = 0;
-	if (data->input[*i] == ' ')
-		return (SPACES);
 	while (data->token_lookup[type] != NULL)
 	{
-		if (ft_strcmp(data->input + *i, data->token_lookup[type]) == 0)
+		if (ft_strncmp(data->input + i, data->token_lookup[type], 
+		 ft_strlen(data->token_lookup[type])) == 0)
 			return (type);
 		type++;
 	}
-	(*i)++;
-	(*j)++;
 	return (UNQUOTED);
 }
 

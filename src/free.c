@@ -16,7 +16,9 @@ void	free_exit(t_data *data, int exit_code)
 {
 	if (errno != 0)
 		perror("Error");
+	free_tokens(data);
 	free(data->input);
+	data->input = NULL;
 	exit(exit_code);
 }
 
@@ -24,9 +26,22 @@ void	free_prompt(t_data *data)
 {
 	if (errno != 0)
 		perror("Error");
+	free_tokens(data);
 	free(data->input);
 	data->input = NULL;
 }
 
+void	free_tokens(t_data *data)
+{
+	t_token	*node;
+	t_token *temp;
 
-
+	node = data->token;
+	while (node != NULL)
+	{
+		temp = node->next;
+		free(node);
+		node = temp;
+	}
+	data->token = NULL;
+}
